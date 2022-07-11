@@ -2,12 +2,12 @@
 
 *Submitted to Ecosphere 2021*
 
-Jared Sonnleitner^1, [Steffi LaZerte](https://steffilazerte.ca)^2, Ann E. McKellar^3, Nancy J. Flood^1, and Matthew W. Reudink^1*
+Jared Sonnleitner<sup>1</sup>, [Steffi LaZerte](https://steffilazerte.ca)<sup>2</sup>, Ann E. McKellar<sup>3</sup>, Nancy J. Flood<sup>1</sup>, and Matthew W. Reudink<sup>1,*</sup>
 
-^* Corresponding Author  
-^1 Department of Biological Sciences, Thompson Rivers University, Kamloops, BC V2C 0C8, Canada  
-^2 Department of Biology, Brandon University, Brandon, MB R7A 6A9, Canada  
-^3 Wildlife Research Division, Environment and Climate Change Canada, Saskatoon, SK S7N 0X4, Canada  
+<sup>*</sup> Corresponding Author  
+<sup>1</sup> Department of Biological Sciences, Thompson Rivers University, Kamloops, BC V2C 0C8, Canada  
+<sup>2</sup> Department of Biology, Brandon University, Brandon, MB R7A 6A9, Canada  
+<sup>3</sup> Wildlife Research Division, Environment and Climate Change Canada, Saskatoon, SK S7N 0X4, Canada  
 
 
 # Contents
@@ -32,7 +32,8 @@ we have not included reproducible controls for packages and package versions
 (like [`renv`](https://rstudio.github.io/renv) for example). 
 Please see the manuscript for package versions used, and the header of each script
 for packages required. Apologies for the inconvenience! 
-Please contact @steffilazerte if you run into any problems.
+Please contact [@steffilazerte](https://github.com/steffilazerte)
+if you run into any problems.
 
 
 
