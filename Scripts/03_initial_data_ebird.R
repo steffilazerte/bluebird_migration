@@ -21,8 +21,8 @@
 
 #' R Code to run and save this report:
 #+ eval = FALSE
-# rmarkdown::render(input = "./Scripts/03_initial_data_ebird.R",
-#                   output_dir = './Results/',
+# rmarkdown::render(input = "Scripts/03_initial_data_ebird.R",
+#                   output_dir = 'Results/',
 #                   output_file = paste0('03_initial_data_ebird_', Sys.Date(), '.html'),
 #                   envir = new.env())
 
@@ -97,13 +97,13 @@ for(s in c("easblu", "wesblu", "moublu")) {
   #' Specific filters by year
   #' - Restrict to last 10 years (2019 isn't a complete year)
   for(y in 2009:2018) {
-    if(!file.exists(here(paste0("./Data/Intermediate/", s, "_", y, "_obs.txt")))) {
+    if(!file.exists(here(paste0("Data/Intermediate/", s, "_", y, "_obs.txt")))) {
       filters <- auk_date(filters, date = c(paste0(y, "-01-01"), paste0(y, "-12-31")))
 
       #' Run the filters and save the output
       auk_filter(filters,
-                 file = here(paste0("./Data/Intermediate/", s, "_", y, "_obs.txt")),
-                 file_sampling = here(paste0("./Data/Intermediate/", y, "_checklists.txt")),
+                 file = here(paste0("Data/Intermediate/", s, "_", y, "_obs.txt")),
+                 file_sampling = here(paste0("Data/Intermediate/", y, "_checklists.txt")),
                  overwrite = TRUE) # Only need to keep one copy of sampling per year
     }
   }
@@ -123,14 +123,14 @@ for(s in c("easblu", "wesblu", "moublu")) {
 #' - **This takes time to run!** So it might be faster to just read in the .rds later
 
 #' Hex grid
-hex <- read_rds(here("./Data/Datasets/hex_res7.rds"))
+hex <- read_rds(here("Data/Datasets/hex_res7.rds"))
 
 info <- data.frame()
 for(s in c("easblu", "wesblu", "moublu")) {
   for(y in 2009:2018) {
-    if(!file.exists(here(paste0("./Data/Intermediate/", s, "_", y, "_hex_res7.rds")))) {
-      auk_zerofill(here(paste0("./Data/Intermediate/", s, "_", y, "_obs.txt")),
-                   here(paste0("./Data/Intermediate/", y, "_checklists.txt")),
+    if(!file.exists(here(paste0("Data/Intermediate/", s, "_", y, "_hex_res7.rds")))) {
+      auk_zerofill(here(paste0("Data/Intermediate/", s, "_", y, "_obs.txt")),
+                   here(paste0("Data/Intermediate/", y, "_checklists.txt")),
                    collapse = TRUE) %>%
         mutate(effort_distance_km = replace_na(effort_distance_km, 0)) %>%
         filter(effort_distance_km <= 5) %>%
@@ -146,7 +146,7 @@ for(s in c("easblu", "wesblu", "moublu")) {
         mutate(species = case_when(s == "easblu" ~ "Eastern Bluebird",
                                    s == "wesblu" ~ "Western Bluebird",
                                    s == "moublu" ~ "Mountain Bluebird")) %>%
-        write_rds(here(paste0("./Data/Intermediate/", s, "_", y, "_hex_res7.rds")))
+        write_rds(here(paste0("Data/Intermediate/", s, "_", y, "_hex_res7.rds")))
     }
   }
 }
@@ -157,23 +157,22 @@ for(s in c("easblu", "wesblu", "moublu")) {
 #' Load and bind all hex files together for later
 
 #' Get hex file names
-hex_files <- list.files(here("./Data/Intermediate"),
+hex_files <- list.files(here("Data/Intermediate"),
                         pattern = "_hex_res7.rds",
                         full.names = TRUE)
 
 #' Load and bind together into a single file
 birds <- do.call("rbind", lapply(hex_files, read_rds)) %>%
-  mutate(type = "bluebird",
-         year = year(observation_date),
+  mutate(year = year(observation_date),
          month = month(observation_date),
          week = week(observation_date),
          yday = yday(observation_date))
 
 #' Save as geo file (for sharing) and rds (for speed in loading)
-#st_write(birds, here("./Data/Datasets/birds_01_hex_all.gpkg"))
-write_rds(birds, here("./Data/Datasets/birds_01_hex_all.rds"))
+#st_write(birds, here("Data/Datasets/birds_01_hex_all.gpkg"))
+write_rds(birds, here("Data/Datasets/birds_01_hex_all.rds"))
 
-birds <- read_rds(here("./Data/Datasets/birds_01_hex_all.rds"))
+birds <- read_rds(here("Data/Datasets/birds_01_hex_all.rds"))
 
 #' Get with hex centroids as lat/lon in non-spatial data file
 hex_centroid <- hex %>%
@@ -189,8 +188,8 @@ birds_centroid <- birds %>%
   left_join(hex_centroid, by = "hexID")
 
 #' Save as csv (for sharing) and rds (for speed in loading)
-#write_csv(birds_centroid, here("./Data/Datasets/birds_02_hex_sum.csv"))
-write_rds(birds_centroid, here("./Data/Datasets/birds_02_hex_sum.rds"))
+#write_csv(birds_centroid, here("Data/Datasets/birds_02_hex_sum.csv"))
+write_rds(birds_centroid, here("Data/Datasets/birds_02_hex_sum.rds"))
 
 
 #+ echo = FALSE
@@ -211,7 +210,7 @@ map_limits <- birds_centroid %>%
 
 map_limits <- map(map_limits$geometry, st_bbox) %>%
   set_names(unique(birds_centroid$species))
-write_rds(map_limits, here("./Data/Datasets/species_bbox.rds"))
+write_rds(map_limits, here("Data/Datasets/species_bbox.rds"))
 
 #+ echo = FALSE
 # Reproducible ---------------------------------------------------------------

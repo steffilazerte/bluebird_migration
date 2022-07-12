@@ -21,8 +21,8 @@
 
 #' R Code to run and save this report:
 #+ eval = FALSE
-# rmarkdown::render(input = "./Scripts/04_ebird_samples.R",
-#                   output_dir = './Results/',
+# rmarkdown::render(input = "Scripts/04_ebird_samples.R",
+#                   output_dir = 'Results/',
 #                   output_file = paste0('04_ebird_samples_', Sys.Date(), '.html'),
 #                   envir = new.env())
 
@@ -43,9 +43,9 @@ library(patchwork)
 
 #' Load hex polygons and birds counts
 
-birds <- read_rds(here("./Data/Datasets/birds_02_hex_sum.rds"))
-hex <- read_rds(here("./Data/Datasets/hex_res7.rds"))
-americas <- read_rds(here("./Data/Datasets/americas.rds"))
+birds <- read_rds(here("Data/Datasets/birds_02_hex_sum.rds"))
+hex <- read_rds(here("Data/Datasets/hex_res7.rds"))
+americas <- read_rds(here("Data/Datasets/americas.rds"))
 
 #' Create base map that will be the same for each hex figure
 base_map <- ggplot() +
@@ -67,21 +67,21 @@ base_map <- ggplot() +
 #' # Prep Data
 birds_daily <- birds %>%
   filter(!is.na(observation_date)) %>%
-  group_by(species, type, year, yday, observation_date) %>%
+  group_by(species, year, yday, observation_date) %>%
   summarize(total_checklists = sum(total_checklists),
             total_obs = sum(total_obs),
             presence = total_obs > 0) %>%
   mutate(species_year = paste0(year, " - ", species))
 
 n <- birds_daily %>%
-  group_by(species_year, type) %>%
+  group_by(species_year) %>%
   summarize(n = sum(presence))
 
 #' Summarize counts as monthly totals for each species in each year
 birds_monthly <- birds %>%
   filter(!is.na(observation_date)) %>%
   mutate(prop_obs = total_obs/total_checklists) %>%
-  group_by(hexID, species, year, month, type) %>%
+  group_by(hexID, species, year, month) %>%
   summarize(total_checklists = sum(total_checklists),
             total_obs = sum(total_obs),
             prop_obs = total_obs/total_checklists) %>%
@@ -98,7 +98,7 @@ birds_monthly <- birds %>%
 birds_yearly <- birds %>%
   filter(!is.na(observation_date)) %>%
   mutate(prop_obs = total_obs/total_checklists) %>%
-  group_by(hexID, species, type, year) %>%
+  group_by(hexID, species, year) %>%
   summarize(total_checklists = sum(total_checklists),
             total_obs = sum(total_obs),
             prop_obs = total_obs/total_checklists) %>%
@@ -111,7 +111,7 @@ birds_yearly <- birds %>%
   left_join(hex, ., by = "hexID")
 
 birds_total <- birds_yearly %>%
-  group_by(species, type, hexID) %>%
+  group_by(species, hexID) %>%
   summarize(total_checklists = sum(total_checklists, na.rm = TRUE),
             total_obs = sum(total_obs, na.rm = TRUE)) %>%
   # Set zeros as NA, so that we can clearly differentiate those observations

@@ -21,8 +21,8 @@
 
 #' R Code to run and save this report:
 #+ eval = FALSE
-# rmarkdown::render(input = "./Scripts/02_initial_data_hex.R",
-#                   output_dir = './Results/',
+# rmarkdown::render(input = "Scripts/02_initial_data_hex.R",
+#                   output_dir = 'Results/',
 #                   output_file = paste0('02_initial_data_hex_', Sys.Date(), '.html'),
 #                   envir = new.env())
 
@@ -98,8 +98,10 @@ americas <- ne_countries(continent = c("North America", "Central America", "Sout
   # Remove Hawaii
   filter(name !="Hawaii") %>%
   group_by(admin) %>%
+  st_make_valid() %>%
   summarize() %>%
-  st_transform(st_crs(grid))
+  st_transform(st_crs(grid)) %>%
+  st_make_valid()
 
 write_rds(americas, here("Data/Datasets/americas.rds"))
 
