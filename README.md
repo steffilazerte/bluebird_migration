@@ -21,18 +21,22 @@ which we used as a guide for our analyses.
 
 ## Format
 
-The scripts are stored int the `Scripts` folder and can be run in sequence
-starting with the `01_setup.R`. Note that scripts are designed to produce formatted
+The scripts are stored int the `Scripts` folder and can be run in sequence. 
+Note that scripts are designed to produce formatted
 RMarkdown reports, so can be run interactively (by hand) or with the `rmarkdown::render()` 
 code contained at the top of each script. If running this code, an html report
-of the script will be produced in the `Results` folder, any data produced will
-be saved to a `Data` folder. 
+of the script will be produced in the `Results` folder. 
+Data produced will be saved to a `Data` folder. 
 
 Because scripts were developed off GitHub and separately by different team members, 
 we have not included reproducible controls for packages and package versions
 (like [`renv`](https://rstudio.github.io/renv) for example). 
-Please see the manuscript for package versions used, and the header of each script
-for packages required. Apologies for the inconvenience! 
+
+Where we are aware of breaking changes in packages, we have included instructions for installing
+specific versions of packages in `01_setup.R`.
+
+For all other packages, please see the manuscript for package versions used, 
+and the header of each script for packages required. Apologies for the inconvenience! 
 Please contact [@steffilazerte](https://github.com/steffilazerte)
 if you run into any problems.
 
