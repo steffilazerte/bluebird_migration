@@ -1,11 +1,12 @@
 library(car)
 library(lsmeans)
 library(plyr)
+library(tidyverse)
 
-migration<-read.csv(here("./Data/Datasets/migration_details"), guess_max = 2000)
+migration<-read_csv(here("./Data/Datasets/migration_details"), guess_max = 2000)
+migration <- filter(migration, !(species == "Western Bluebird" & year %in% c(2009, 2012)))
 
 spring_median_lon <- migration$spring_median_lon
-
 
 contrasts(data$species) <- contr.sum(n = 3)
 
@@ -33,11 +34,6 @@ lsmeans(Mod3, pairwise~year*species, adjust="tukey")
 modA=lm(breeding_median_lon~year+species, data=migration)
 summary(modA)
 
-
-####
-Graph1.1 = ggplot(migration, aes(x = Petal.Width, y = Sepal.Length)) + 
-  geom_point() +
-  stat_smooth(method = "lm", col = "red")
 
 #Latitude
 
