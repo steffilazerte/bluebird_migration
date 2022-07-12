@@ -1,5 +1,5 @@
 [![DOI](https://zenodo.org/badge/512893660.svg)](https://zenodo.org/badge/latestdoi/512893660)
-![publication](https://img.shields.io/badge/status-in%20review-orange)]
+![publication](https://img.shields.io/badge/status-in%20review-orange)
 
 # Rapid shifts in migration routes and breeding latitude in North American bluebirds
 
