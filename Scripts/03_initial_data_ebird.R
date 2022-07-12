@@ -56,6 +56,7 @@ library(here)
 
 ebird_files <- "/media/steffi/7faab516-92aa-457e-a16b-b33c5b1a3c40/ebird/"
 #auk_set_ebd_path(path = ebird_files, overwrite = TRUE)
+americas <- read_rds(here("Data/Datasets/americas.rds"))
 
 #+ echo = FALSE
 # Best Practices --------------------------------------------------------------
