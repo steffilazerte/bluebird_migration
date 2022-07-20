@@ -37,6 +37,9 @@ library(patchwork) # For combining figures
 library(gridExtra) # Also for combining figures
 library(here)
 library(rnaturalearth)
+library(ggplot2)
+library(ggpubr)
+require(dplyr)
 
 #+ echo = FALSE
 # Load Data ---------------------------------------------------------------
@@ -196,6 +199,107 @@ g <- g_map + g_lat +
 
 
 ggsave("Results/Figures/figure1_combo.png", plot = g, dpi = 600, width = 9, height = 9)
+
+
+
+
+#Figure 2
+    
+par(mfrow=c(1,2))
+boxplot(speed_spring~species, ylab = "population-level spring migration speed (km/day)", xlab ="")
+boxplot(speed_fall~species, ylab = "population-level spring migration speed (km/day)", xlab ="")
+    
+##Figure 3
+    
+###Fall
+    
+ggplot(aes(year, fall_median_lon, color=species, group = species), data=biglon) + geom_point() +
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+ 
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Western Bluebird")) + scale_color_manual(breaks = c("Eastern Bluebird", "Mountain Bluebird", "Western Bluebird"), values=c("orange", "blue", "black"))+
+                                                                                                                              
+      #geom_point(aes(year, fall_median_lon), data=migration.Eastern.Bluebird) +
+      #geom_point(aes(year, fall_median_lon), data=migration.Western.Bluebird) +
+      #geom_smooth(method = "lm", se = FALSE, data = migration.Western.Bluebird) +
+      #geom_smooth(method = "lm", se = FALSE, data = migration.Eastern.Bluebird) + scale_color_grey(start=0.8, end=0.2) +
+      ylab ("Fall median longitude") + xlab ("Year") + theme(legend.position = "none")+
+      theme_bw()+
+      theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank())+
+      theme(panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank())+
+      facet_wrap(~ax, scales="free_y", ncol=1) +scale_y_continuous(breaks = scales::pretty_breaks(n = 6))+
+      theme(axis.title.y.right = element_blank(),                # hide right axis title
+            axis.text.y.right = element_blank(),                 # hide right axis labels
+            #axis.ticks.y = element_blank(),                      # left/right axis ticks
+            axis.text.y = element_text(margin = margin(r = 0)),  # move left axis labels closer to axis
+            panel.spacing = unit(0, "mm"),                       # remove spacing between facets
+            strip.background = element_rect(size = 0.5),
+            panel.background = element_rect(colour = "black"))+
+      theme(legend.position = "none")+
+      theme(text = element_text(size=10))+
+      theme(axis.text.x=element_text(colour="black"))+
+      theme(axis.text.y=element_text(colour="black"))+
+      theme(text = element_text(size=20))
+    
+
+###Spring
+    
+ggplot(aes(year, spring_median_lon, color=species, group = species), data=biglon) + geom_point() +
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+ 
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Western Bluebird")) + scale_color_manual(breaks = c("Eastern Bluebird", "Mountain Bluebird", "Western Bluebird"), values=c("orange", "blue", "black"))+
+      
+      #geom_point(aes(year, fall_median_lon), data=migration.Eastern.Bluebird) +
+      #geom_point(aes(year, fall_median_lon), data=migration.Western.Bluebird) +
+      #geom_smooth(method = "lm", se = FALSE, data = migration.Western.Bluebird) +
+      #geom_smooth(method = "lm", se = FALSE, data = migration.Eastern.Bluebird) + scale_color_grey(start=0.8, end=0.2) +
+      ylab ("Spring median longitude") + xlab ("Year") + theme(legend.position = "none")+
+      theme_bw()+
+      theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank())+
+      theme(panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank())+
+      facet_wrap(~ax, scales="free_y", ncol=1) +scale_y_continuous(breaks = scales::pretty_breaks(n = 6))+
+      theme(axis.title.y.right = element_blank(),                # hide right axis title
+            axis.text.y.right = element_blank(),                 # hide right axis labels
+            #axis.ticks.y = element_blank(),                      # left/right axis ticks
+            axis.text.y = element_text(margin = margin(r = 0)),  # move left axis labels closer to axis
+            panel.spacing = unit(0, "mm"),                       # remove spacing between facets
+            strip.background = element_rect(size = 0.5),
+            panel.background = element_rect(colour = "black"))+
+      theme(legend.position = "none")+
+      theme(text = element_text(size=10))+
+      theme(axis.text.x=element_text(colour="black"))+
+      theme(axis.text.y=element_text(colour="black"))+
+      theme(text = element_text(size=20))
+    
+
+
+###Breeding
+    
+ggplot(aes(year, breeding_median_lon, color=species, group = species), data=biglon) + geom_point() +
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+ 
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Western Bluebird")) + scale_color_manual(breaks = c("Eastern Bluebird", "Mountain Bluebird", "Western Bluebird"), values=c("orange", "blue", "black"))+
+      
+      #geom_point(aes(year, fall_median_lon), data=migration.Eastern.Bluebird) +
+      #geom_point(aes(year, fall_median_lon), data=migration.Western.Bluebird) +
+      #geom_smooth(method = "lm", se = FALSE, data = migration.Western.Bluebird) +
+      #geom_smooth(method = "lm", se = FALSE, data = migration.Eastern.Bluebird) + scale_color_grey(start=0.8, end=0.2) +
+      ylab ("Breeding median longitude") + xlab ("Year") + theme(legend.position = "none")+
+      theme_bw()+
+      theme(strip.background = element_blank(), strip.text.x = element_blank(), strip.text.y = element_blank())+
+      theme(panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank())+
+      facet_wrap(~ax, scales="free_y", ncol=1) +scale_y_continuous(breaks = scales::pretty_breaks(n = 6))+
+      theme(axis.title.y.right = element_blank(),                # hide right axis title
+            axis.text.y.right = element_blank(),                 # hide right axis labels
+            #axis.ticks.y = element_blank(),                      # left/right axis ticks
+            axis.text.y = element_text(margin = margin(r = 0)),  # move left axis labels closer to axis
+            panel.spacing = unit(0, "mm"),                       # remove spacing between facets
+            strip.background = element_rect(size = 0.5),
+            panel.background = element_rect(colour = "black"))+
+      theme(legend.position = "none")+
+      theme(text = element_text(size=10))+
+      theme(axis.text.x=element_text(colour="black"))+
+      theme(axis.text.y=element_text(colour="black"))+
+      theme(text = element_text(size=20))
 
 #+ echo = FALSE
 ## Figure 2 - Migration Speed ---------------------------------
