@@ -16,7 +16,7 @@ Jared Sonnleitner<sup>1</sup>, [Steffi LaZerte](https://steffilazerte.ca)<sup>2<
 # Contents
 
 This repository contains the code used to summarize, transform, and analyze 
-eBird data for this manuscript. 
+eBird data for this manuscript as well as the final data set (`migration_details.csv`).
 
 We are extremely grateful to Dr. Sarah Supp and colleagues for sharing their [well-annotated code](https://github.com/sarahsupp/hb-migration) from their publication [Supp et al. (2015)](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/ES15-00239.1), 
 which we used as a guide for our analyses.
@@ -30,6 +30,7 @@ RMarkdown reports, so can be run interactively (by hand) or with the `rmarkdown:
 code contained at the top of each script. If running this code, an html report
 of the script will be produced in the `Results` folder. 
 Data produced will be saved to a `Data` folder. 
+The final dataset, `migration_details.csv` is stored in the `Data/Datasets` folder.
 
 Because scripts were developed off GitHub and separately by different team members, 
 we have not included reproducible controls for packages and package versions
