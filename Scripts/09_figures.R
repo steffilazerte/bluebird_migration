@@ -217,7 +217,7 @@ boxplot(speed_fall~species, ylab = "population-level spring migration speed (km/
 ## Figure 3 - Migration Longitude  ---------------------------------
 #' ## Figure 3 - Migration Longitude
 
-biglon=mutate(migration.Mountain.Bluebird, ax=ifelse(spring_median_lon>-108, "big", "small"))#categorize y-axies ranges for facet wrapping
+biglon=mutate(migration_details, ax=ifelse(spring_median_lon>-108, "big", "small"))#categorize y-axies ranges for facet wrapping
 migration.Mountain.Bluebird=read.csv("migration_details.csv")
 
 ###Fall
