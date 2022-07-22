@@ -2,8 +2,14 @@
 .Rhistory
 .RData
 .Ruserdata
-Data
 Results
 Docs
+
+# Ignore old scripts
 Scripts/Archive
 Scripts/Original
+
+# Ignore all data files except the final one
+Data
+!Data/Datasets/migration_details.csv
+!Data/README.md

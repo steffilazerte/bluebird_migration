@@ -3,7 +3,8 @@
 
 # Create folders for output
 
-dir.create("Data")
+dir.create("Data/Intermediate")
+dir.create("Data/Datasets")
 dir.create("Results")
 dir.create("Results/Figures")
 

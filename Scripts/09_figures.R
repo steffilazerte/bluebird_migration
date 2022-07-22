@@ -203,20 +203,24 @@ ggsave("Results/Figures/figure1_combo.png", plot = g, dpi = 600, width = 9, heig
 
 
 
-#Figure 2
-    
+#+ echo = FALSE
+## Figure 2 - Migration Speed ---------------------------------
+#' ## Figure 2 - Migration Speed
+
 par(mfrow=c(1,2))
 boxplot(speed_spring~species, ylab = "population-level spring migration speed (km/day)", xlab ="")
 boxplot(speed_fall~species, ylab = "population-level spring migration speed (km/day)", xlab ="")
-    
-##Figure 3
-    
+
+#+ echo = FALSE
+## Figure 3 - Migration Longitude  ---------------------------------
+#' ## Figure 3 - Migration Longitude
+
 ###Fall
-    
+
 ggplot(aes(year, fall_median_lon, color=species, group = species), data=biglon) + geom_point() +
-      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+ 
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+
       geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Western Bluebird")) + scale_color_manual(breaks = c("Eastern Bluebird", "Mountain Bluebird", "Western Bluebird"), values=c("orange", "blue", "black"))+
-                                                                                                                              
+
       #geom_point(aes(year, fall_median_lon), data=migration.Eastern.Bluebird) +
       #geom_point(aes(year, fall_median_lon), data=migration.Western.Bluebird) +
       #geom_smooth(method = "lm", se = FALSE, data = migration.Western.Bluebird) +
@@ -239,14 +243,14 @@ ggplot(aes(year, fall_median_lon, color=species, group = species), data=biglon) 
       theme(axis.text.x=element_text(colour="black"))+
       theme(axis.text.y=element_text(colour="black"))+
       theme(text = element_text(size=20))
-    
+
 
 ###Spring
-    
+
 ggplot(aes(year, spring_median_lon, color=species, group = species), data=biglon) + geom_point() +
-      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+ 
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+
       geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Western Bluebird")) + scale_color_manual(breaks = c("Eastern Bluebird", "Mountain Bluebird", "Western Bluebird"), values=c("orange", "blue", "black"))+
-      
+
       #geom_point(aes(year, fall_median_lon), data=migration.Eastern.Bluebird) +
       #geom_point(aes(year, fall_median_lon), data=migration.Western.Bluebird) +
       #geom_smooth(method = "lm", se = FALSE, data = migration.Western.Bluebird) +
@@ -269,15 +273,15 @@ ggplot(aes(year, spring_median_lon, color=species, group = species), data=biglon
       theme(axis.text.x=element_text(colour="black"))+
       theme(axis.text.y=element_text(colour="black"))+
       theme(text = element_text(size=20))
-    
+
 
 
 ###Breeding
-    
+
 ggplot(aes(year, breeding_median_lon, color=species, group = species), data=biglon) + geom_point() +
-      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+ 
+      geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Eastern Bluebird"))+
       geom_smooth(method="lm",se=FALSE,colour="black",data=subset(biglon, species=="Western Bluebird")) + scale_color_manual(breaks = c("Eastern Bluebird", "Mountain Bluebird", "Western Bluebird"), values=c("orange", "blue", "black"))+
-      
+
       #geom_point(aes(year, fall_median_lon), data=migration.Eastern.Bluebird) +
       #geom_point(aes(year, fall_median_lon), data=migration.Western.Bluebird) +
       #geom_smooth(method = "lm", se = FALSE, data = migration.Western.Bluebird) +
@@ -300,13 +304,4 @@ ggplot(aes(year, breeding_median_lon, color=species, group = species), data=bigl
       theme(axis.text.x=element_text(colour="black"))+
       theme(axis.text.y=element_text(colour="black"))+
       theme(text = element_text(size=20))
-
-#+ echo = FALSE
-## Figure 2 - Migration Speed ---------------------------------
-#' ## Figure 2 - Migration Speed
-
-
-#+ echo = FALSE
-## Figure 3 - Migration Longitude  ---------------------------------
-#' ## Figure 3 - Migration Longitude
 
