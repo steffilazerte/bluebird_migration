@@ -1,9 +1,9 @@
 # Data information
 
 These folders are organized in order to work with the full set of scripts used
-to create the final data set, `migration_details.csv`. 
+to create the final data set used in analyses, `migration_details.csv`. 
 
-This final data is contained in `Data/Datasets/migration_details.csv`
+This data is located in `Data/Datasets/migration_details.csv`
 
 The following is a metadata declaration for this dataset.
 
@@ -14,25 +14,22 @@ The following is a metadata declaration for this dataset.
 
 Title of Dataset: migration_details.csv
 
-<provide at least two contacts>
-Author/Principal Investigator Information
-Name: Matthew W. Reudink
-ORCID: 0000-0001-8956-5849
-Institution: Thompson Rivers University
+Author/Principal Investigator Information  
+Name: Matthew W. Reudink  
+ORCID: 0000-0001-8956-5849  
+Institution: Thompson Rivers University  
 Email: mreudink@tru.ca
 
-Author/Associate or Co-investigator Information
-Name: Stefanie LaZerte
-ORCID: 0000-0002-7690-8360
-Institution: Brandon University
+Author/Associate or Co-investigator Information  
+Name: Stefanie LaZerte  
+ORCID: 0000-0002-7690-8360  
+Institution: Brandon University  
 Email: sel@steffilazerte.ca
-
-Author/Alternate Contact Information
-Name: Jared Sonnleitner
-ORCID:
-Institution: Thompson Rivers University
-Address: 
-Email: Jaredsonnleitner12@gmail.com
+ 
+Author/Alternate Contact Information  
+Name: Jared Sonnleitner  
+Institution: Thompson Rivers University  
+Email: Jaredsonnleitner12@gmail.com  
 
 Date of data collection: 2020-05-01
 

@@ -151,7 +151,7 @@ This script looks at migration routes and calculates longitudinal variation
    (`non-breeding_min_lon`, `non-breeding_mean_lon`, `non-breeding_max_lon`, etc.)
 
 #### `09_figures.R`
-- Large Figure 1 combo
+- Code to produce Figures 1, 2 and 3 of the manuscript
 
 #### `10_stats.R`
-- Statistical analyses of blue bird data
+- Statistical analyses
