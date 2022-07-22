@@ -208,8 +208,10 @@ ggsave("Results/Figures/figure1_combo.png", plot = g, dpi = 600, width = 9, heig
 #' ## Figure 2 - Migration Speed
 
 par(mfrow=c(1,2))
-boxplot(speed_spring~species, ylab = "population-level spring migration speed (km/day)", xlab ="")
-boxplot(speed_fall~species, ylab = "population-level spring migration speed (km/day)", xlab ="")
+boxplot(speed_spring~species, ylab = "population-level spring migration speed (km/day)",
+        xlab ="", data = migration_details)
+boxplot(speed_fall~species, ylab = "population-level spring migration speed (km/day)",
+        xlab ="", data = migration_details)
 
 #+ echo = FALSE
 ## Figure 3 - Migration Longitude  ---------------------------------
