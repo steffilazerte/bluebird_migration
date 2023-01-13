@@ -3,7 +3,7 @@
 
 # Rapid shifts in migration routes and breeding latitude in North American bluebirds
 
-*[Published in Ecosphere 2022]((https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.4316))*
+*[Published in Ecosphere 2022](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/ecs2.4316)*
 
 Jared Sonnleitner<sup>1</sup>, [Steffi LaZerte](https://steffilazerte.ca)<sup>2</sup>, Ann E. McKellar<sup>3</sup>, Nancy J. Flood<sup>1</sup>, and Matthew W. Reudink<sup>1,*</sup>
 
